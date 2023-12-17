@@ -1,0 +1,20 @@
+  td.icon{
+    width: 0px;
+  }
+
+  table{
+    width: 90%;
+    margin: 30px;
+  }
+
+  tr.even{
+    background-color:rgb(180, 232, 122);
+  }
+
+  tr.odd{
+    background-color: rgb(225, 225, 92);
+  }
+
+  div.info{
+    margin-top: 50px;
+  }

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
 
 function AddClass(){
     const navigateTo = useNavigate();
@@ -85,8 +84,6 @@ function AddClass(){
 
                     <button className="submit-button">הוספה</button>
                 </form>
-                
-                <Footer />
             </>
         );
     } else{
@@ -97,7 +94,6 @@ function AddClass(){
                 <h3>לא ניתן להוסיף שכבות נוספות</h3>
 
                 <button className="small-button" onClick = {() => navigateTo("..")}>חזרה לרשימת השכבות &gt;&gt;</button>
-                <Footer />
             </>
         );
     }

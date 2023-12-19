@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
 
 var first = true; //used to check if it is the first time, to disable that "React.StrictMode" would make the table in the second time
 
@@ -63,7 +62,6 @@ function ClassesNavigate(){
                         ))}
                     </tbody>
                 </table>
-                <Footer />
             </>
         );
     } 
@@ -73,8 +71,6 @@ function ClassesNavigate(){
                 <h3>בחר.י כיתה כדי לראות את רשימת התלמידים.ות הלומדים.ות בה</h3>
                 
                 <h3>אין שכבות בבית הספר להצגה</h3>
-                
-                <Footer />
             </>
         );
     }

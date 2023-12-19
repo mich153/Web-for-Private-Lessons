@@ -1,6 +1,5 @@
 import React from 'react'
 import Toolbar from '../components/Toolbar';
-import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 
 function HomeStudent() {
@@ -18,8 +17,6 @@ function HomeStudent() {
                 <button onClick = {() => navigateTo("")}>הרשמה לתגבור</button>
                 <button onClick = {() => navigateTo("")}>נוכחות</button>
             </div>
-            
-           <Footer />
         </>
     );
 }

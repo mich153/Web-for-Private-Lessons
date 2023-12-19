@@ -1,5 +1,4 @@
 import React from 'react'
-import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 
 function Admin() {
@@ -16,8 +15,6 @@ function Admin() {
                 <button onClick = {() => navigateTo("classes")}>רשימת כיתות</button>
                 <button onClick = {() => navigateTo("")}>רשימת מקצועות לימוד</button>
             </div>
-            
-           <Footer />
         </>
     );
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import Toolbar from '../components/Toolbar';
-import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 
 function HomeTeacher() {
@@ -18,8 +17,6 @@ function HomeTeacher() {
                 <button onClick = {() => navigateTo("")}>צפייה בלוח תגבורים</button>
                 <button onClick = {() => navigateTo("")}>צפייה בחומרי לימוד שהועלו</button>
             </div>
-            
-           <Footer />
         </>
     );
 }

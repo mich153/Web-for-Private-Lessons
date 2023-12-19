@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Footer from "../components/Footer";
 
 function Students(){    
     const navigateTo = useNavigate();
@@ -66,8 +65,6 @@ function Students(){
                         ))}
                     </tbody>
                 </table>
-
-                <Footer />
             </>
         );
     } else{
@@ -78,8 +75,6 @@ function Students(){
                 <button className="form-button" onClick = {() => navigateTo("../add-student")}>הוספת תלמיד.ה</button>
                 
                 <h3>אין תלמידים.ות להצגה בכיתה זו</h3>
-                
-                <Footer />
             </>
         );
     }

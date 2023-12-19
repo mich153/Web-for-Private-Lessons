@@ -1,5 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Footer from './components/Footer.jsx'
+import Header from './components/Header.jsx'
 import Main from './pages/Home.jsx'
 import NoPage from './pages/NoPage.jsx'
 import LogIn from './pages/LogIn.jsx'
@@ -20,6 +22,7 @@ function App() {
   return(
     <>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path='/' element={ <Main /> } />
           <Route path="/*" element={ <NoPage /> } />
@@ -65,6 +68,7 @@ function App() {
             </Route>
           </Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

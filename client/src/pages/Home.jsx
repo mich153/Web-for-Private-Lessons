@@ -1,16 +1,9 @@
 import React from 'react'
 import './Home.css'
-import { useNavigate } from 'react-router-dom';
-import Footer from '../components/Footer';
 
 function Home() {
-    const navigateTo = useNavigate();
-    
     return(
         <>
-            <img src="/logo.png" alt='logo' width="380" height="100"/> 
-            <button className = "small-button" onClick = {() => navigateTo("/login")}>כניסה</button>
-            
             <h1>מערכת להרשמה מקוונת לתגבורים</h1>
 
             <div className='info'>
@@ -78,8 +71,6 @@ function Home() {
                     </tbody>
                 </table>
             </div>
-            
-           <Footer />
         </>
     );
 }

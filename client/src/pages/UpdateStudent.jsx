@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import Footer from "../components/Footer";
-
 
 function CreateStudent(){
     const navigateTo = useNavigate();
@@ -168,8 +166,6 @@ function CreateStudent(){
                 
                 <button className="submit-button">הוספה</button>
             </form>
-
-            <Footer />
         </>
     )
 }

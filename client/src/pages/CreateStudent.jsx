@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './LogIn.css'
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
 
 
 function CreateStudent(){
@@ -116,8 +115,6 @@ function CreateStudent(){
                     
                     <button className="submit-button">הוספה</button>
                 </form>
-
-                <Footer />
             </>
         )
     }else{
@@ -126,8 +123,6 @@ function CreateStudent(){
                 <h1>הוספת תלמיד.ה חדש.ה</h1>
                 
                 <h3>לא קיימות כיתות שניתן להוסיף אליהן תלמידים.ות</h3>
-
-                <Footer />
             </>
         )
     }

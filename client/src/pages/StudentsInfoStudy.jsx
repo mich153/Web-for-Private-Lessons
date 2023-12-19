@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
-import Footer from "../components/Footer";
 
 function StudentsInfoStudy(){   
     const {class_id, class_number} = useParams();
@@ -58,8 +57,6 @@ function StudentsInfoStudy(){
                         ))}
                     </tbody>
                 </table>
-
-                <Footer />
             </>
         );
     } else{
@@ -68,8 +65,6 @@ function StudentsInfoStudy(){
                 <h1>רשימת התלמידים</h1>
                 
                 <h3>אין תלמידים.ות להצגה בכיתה זו</h3>
-                
-                <Footer />
             </>
         );
     }

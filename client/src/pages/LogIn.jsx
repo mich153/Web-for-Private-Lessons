@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Footer from '../components/Footer';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
@@ -67,7 +66,6 @@ function LogIn() {
                 <p className="error">{error}</p>
                 <button className="submit-button">כניסה</button>
             </form>
-            <Footer />
         </>
     );
 }

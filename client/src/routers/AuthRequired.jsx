@@ -1,25 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import NoAccess from "../pages/NoAccess";
 
 function AuthRequired({admin = null, student = null, teacher = null, coordinator = null}){
-    let userType = null;
     const navigateTo = useNavigate();
+    const [userType, setUserType] = useState(null)
 
     useEffect(() => {
-        axios.get("http://localhost:3000/dashboard")
-        .then(res => {
-            if(!res.data.valid){
-                window.localStorage.clear();
-            }
-            userType = window.localStorage.getItem("type");
-            if(!userType){
-                window.onload = function(){alert('צריך להתחבר כדי לגשת לדף זה')}
-                navigateTo("/login")
-            }
-        })
-        .catch(err => console.log(err))
+        setUserType(window.localStorage.getItem("type"));
+        if(!window.localStorage.getItem("type")){
+            window.alert('צריך להתחבר כדי לגשת לדף זה')
+            navigateTo("/login")
+        }
     })
 
     if(userType == 'admin' && admin){

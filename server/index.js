@@ -42,11 +42,11 @@ app.get('/classes', async (req,res) => {
 app.put('/updateClass/:id', (req, res) => {
   const id = req.params.id;
   ClassModel.findByIdAndUpdate({_id: id}, {classes_counter_in_age_group: req.body.classesCounter})
-  .then(classes => res.json(classes))
+  .then(cls => res.json(cls))
   .catch(err => res.json(err))
 })
 
-app.get('/user/:type', async (req,res) => {
+app.get('/users/:type', async (req,res) => {
   try {
     const data = await UserModel.find({type: req.params.type});
     res.send(data);
@@ -89,6 +89,16 @@ app.post("/createUser", (req, res) => {
   .catch(err => res.json(err))
 })
 
+app.put("/updateUser/:id" , (req, res) => {
+  const id = req.params.id;
+  UserModel.findByIdAndUpdate({_id: id}, {
+    first_name: req.body.firstName, 
+    last_name: req.body.lastName
+  })
+  .then(user => res.json(user))
+  .catch(err => res.json(err))
+})
+
 app.get('/students', async (req,res) => {
   try {
     const data = await StudentsModel.find({});
@@ -116,6 +126,26 @@ app.post("/createStudent", (req, res) => {
     id: req.body.id
   })
   .then(students => res.json(students))
+  .catch(err => res.json(err))
+})
+
+app.get('/student/:id', async (req,res) => {
+  try {
+    const data = await StudentsModel.findOne({_id: req.params.id});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
+app.put("/updateStudent/:id" , (req, res) => {
+  const id = req.params.id;
+  StudentsModel.findByIdAndUpdate({_id: id}, {
+    age_group: req.body.ageGroup, 
+    class_number: req.body.classNumber, 
+    id: req.body.id
+  })
+  .then(user => res.json(user))
   .catch(err => res.json(err))
 })
 

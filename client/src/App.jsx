@@ -14,6 +14,7 @@ import Classes from './pages/ClassesList.jsx'
 import AddClass from './pages/AddClass.jsx'
 import ClassesNavigate from './pages/ClassesNavigate.jsx'
 import StudentsInfoStudy from './pages/StudentsInfoStudy.jsx'
+import UpdateStudent from './pages/UpdateStudent.jsx'
 
 function App() {
   return(
@@ -24,7 +25,7 @@ function App() {
           <Route path="/*" element={ <NoPage /> } />
           <Route path="/login" element={ <LogIn /> } />
           <Route path="/home" >
-            {/** protected home page */}
+            {/** protected pages */}
             <Route index element={ 
               <AuthRequired 
               admin={<Admin />} 
@@ -32,7 +33,6 @@ function App() {
               teacher={<HomeTeacher />}
               coordinator={<HomeCoordinator />} />
             } />
-            {/** only for admin */}
             <Route path="classes" >
               <Route index element={ 
                 <AuthRequired 
@@ -43,7 +43,6 @@ function App() {
                 admin={<AddClass />} />
               } />
             </Route>
-            {/** for admin and coordintor */}
             <Route path='students-list'>
               <Route index element={
                 <AuthRequired
@@ -58,6 +57,10 @@ function App() {
               <Route path="add-student" element={ 
                 <AuthRequired
                 admin={<CreateStudent />} />
+              } />
+              <Route path="update-student/:student_id" element={ 
+                <AuthRequired
+                admin={<UpdateStudent />} />
               } />
             </Route>
           </Route>

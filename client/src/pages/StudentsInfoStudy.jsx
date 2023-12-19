@@ -7,7 +7,7 @@ function StudentsInfoStudy(){
     const {class_id, class_number} = useParams();
     const [students, setStudents] = useState([]);
     const [users, setUsers] = useState([]);
-    //להחליף את הנוכחות והעדרות לשם משתמש וסיסמה, והטבלה שפה שתהיה למרכזים
+    
     useEffect(() => {
         axios.get("http://localhost:3000/studentsFromClass/" + class_id)
         .then(result => { 

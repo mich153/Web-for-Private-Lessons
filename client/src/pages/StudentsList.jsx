@@ -13,7 +13,7 @@ function Students(){
         axios.get("http://localhost:3000/studentsFromClass/" + class_id)
         .then(result => { 
             setStudents(result.data.filter(filterStudents));
-            axios.get("http://localhost:3000/user/" + "student")
+            axios.get("http://localhost:3000/users/" + "student")
             .then(result => setUsers(result.data))
             .catch(err => console.log(err))
         })
@@ -60,7 +60,7 @@ function Students(){
                                 <td>{student.id}</td>
                                 <td>
                                     <button className="form-button" onClick = {() => navigateTo("")}>הסרה</button>
-                                    <button className="form-button" onClick = {() => navigateTo("")}>עדכון</button>
+                                    <button className="form-button" onClick = {() => navigateTo("../update-student/" + student._id)}>עדכון</button>
                                 </td>
                             </tr> 
                         ))}

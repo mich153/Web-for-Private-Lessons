@@ -63,7 +63,7 @@ function CreateStudent(){
                     </div>
                     <div>
                         <label>מספר תעודת זהות</label>
-                        <input type="namber" placeholder="מספר ת.ז"
+                        <input type="number" placeholder="מספר ת.ז"
                         min="200000000" max="400000000"
                         onChange={(e) => setID(e.target.value)}
                         required/>
@@ -82,7 +82,7 @@ function CreateStudent(){
                                     while(droplist.options.length) 
                                         droplist.options.remove(0);
                                     var option = document.createElement("option");
-                                    option.text = "בחר מספר שכבה";
+                                    option.text = "בחר מספר כיתה";
                                     option.value = "";
                                     droplist.add(option);
                                     for(let i=0 ; i<classesCounter ; i++){

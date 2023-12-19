@@ -9,7 +9,6 @@ function AuthRequired({admin = null, student = null, teacher = null, coordinator
     useEffect(() => {
         setUserType(window.localStorage.getItem("type"));
         if(!window.localStorage.getItem("type")){
-            window.alert('צריך להתחבר כדי לגשת לדף זה')
             navigateTo("/login")
         }
     })

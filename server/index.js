@@ -173,7 +173,7 @@ app.post("/login", (req, res) => {
           REFRESH_TOKEN_KEY,
           {expiresIn: '2h'});
         res.cookie('accessToken', accessToken, {maxAge: 900000});
-        res.cookie('refreshToken', refreshToken, {maxAge: 1200000, httpOnly: true, secure: true});
+        res.cookie('refreshToken', refreshToken, {maxAge: 7200000, httpOnly: true, secure: true});
         return res.json({Login: true, id: user[0]._id, type: user[0].type});
       } else{
         return res.json({Login: false, Message: "Invalid username or password"});
@@ -224,6 +224,12 @@ const renewToken = (req, res) => {
 
 app.get("/dashboard", verifyUser, (req, res) => {
   return res.json({valid: true, message: "authorized"})
+})
+
+app.get("/logout", (req, res) => {
+  res.cookie('accessToken', "none", {maxAge: 5000});
+  res.cookie('refreshToken', "none", {maxAge: 10000, httpOnly: true, secure: true});
+  return res.json({Logout: true});
 })
 
 app.listen(3000, () => {

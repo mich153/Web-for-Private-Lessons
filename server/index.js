@@ -141,7 +141,7 @@ app.get('/student/:id', async (req,res) => {
 app.put("/updateStudent/:id" , (req, res) => {
   const id = req.params.id;
   StudentsModel.findByIdAndUpdate({_id: id}, {
-    age_group: req.body.ageGroup, 
+    cls: req.body.ageGroup, 
     class_number: req.body.classNumber, 
     id: req.body.id
   })

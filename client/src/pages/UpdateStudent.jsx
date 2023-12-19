@@ -14,7 +14,7 @@ function CreateStudent(){
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [ageGroup, setAgeGroup] = useState("");
-    const [classNumber, setClassNumber] = useState(0);
+    const [classNumber, setClassNumber] = useState();
     const [id, setID] = useState(0);
     var classesCounter;
 
@@ -27,6 +27,33 @@ function CreateStudent(){
                 setStudent(result.data);
                 if(id == 0){
                     setID(result.data.id);
+                    setAgeGroup(result.data.cls);
+                    setClassNumber(result.data.class_number);
+                    let class_options = document.getElementById("class").childNodes;
+                    for(let i = 0; i < class_options.length; i++){
+                        if(class_options[i].getAttribute("data-key") == result.data.cls){
+                            class_options[i].setAttribute("selected", true);
+                        }
+                    }
+                    classesInUse.find(function(cls){return cls._id == result.data.cls})?
+                    classesCounter = classesInUse.find(function(cls){return cls._id == result.data.cls}).classes_counter_in_age_group:
+                    classesCounter = 0;
+                    var droplist = document.getElementById("select-classes-number");
+                    while(droplist.options.length) 
+                        droplist.options.remove(0);
+                    var option = document.createElement("option");
+                    option.text = "בחר מספר כיתה";
+                    option.value = "";
+                    droplist.add(option);
+                    for(let i=0 ; i < classesCounter ; i++){
+                        option = document.createElement("option");
+                        option.text = i+1;
+                        option.value = i+1;
+                        if(i+1 == result.data.class_number){
+                            option.selected = true;
+                        }
+                        droplist.add(option);
+                    }
                 }
                 axios.get("http://localhost:3000/user/" + result.data.user)
                 .then(result => {
@@ -56,13 +83,13 @@ function CreateStudent(){
         e.preventDefault();
         axios.put("http://localhost:3000/updateUser/" + user._id, {firstName, lastName})
         .then(result => {
-            axios.post("http://localhost:3000/updateStudent/" + student._id, {ageGroup, classNumber, id})
+            axios.put("http://localhost:3000/updateStudent/" + student._id, {ageGroup, classNumber, id})
             .then(result => navigateTo(`../${ageGroup}/${classNumber}`))
             .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
     }
- 
+
     return(
         <>
             <form onSubmit={Submit}>
@@ -95,7 +122,7 @@ function CreateStudent(){
                     <select name="שכבה" id="class"
                     onChange={(e) => {
                         const selectedIndex = e.target.options.selectedIndex;
-                        const selected = e.target.options[selectedIndex].getAttribute('key');
+                        const selected = e.target.options[selectedIndex].getAttribute('data-key');
                         setAgeGroup(selected);
                         for(let i = 0 ; i < classesInUse.length ; i++){
                             if(classesInUse[i]._id == selected){
@@ -111,7 +138,7 @@ function CreateStudent(){
                                     option = document.createElement("option");
                                     option.text = i+1;
                                     option.value = i+1;
-                                    if(i+1 == student.class_number){
+                                    if(i+1 == student.class_number && selected == student.cls){
                                         option.selected = true;
                                     }
                                     droplist.add(option);

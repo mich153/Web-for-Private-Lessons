@@ -7,6 +7,8 @@ const crypto = require('crypto')
 const UserModel = require("./models/Users");
 const ClassModel = require("./models/Classes");
 const StudentsModel = require("./models/Students");
+const SchoolSubjectsModel = require("./models/SchoolSubjects");
+const SchoolSubjects = require('./models/SchoolSubjects');
 
 const app = express();
 app.use(cors({
@@ -26,7 +28,7 @@ app.post("/createClasses", (req, res) => {
       age_group: req.body.ageGroup,
       classes_counter_in_age_group: req.body.classesCounter
   })
-  .then(users => res.json(users))
+  .then(classes => res.json(classes))
   .catch(err => res.json(err))
 })
 
@@ -244,6 +246,24 @@ app.get("/logout", (req, res) => {
   res.cookie('accessToken', "none", {maxAge: 5000});
   res.cookie('refreshToken', "none", {maxAge: 10000, httpOnly: true, secure: true});
   return res.json({Logout: true});
+})
+
+app.post("/createSchoolSubject", (req, res) => {
+  SchoolSubjectsModel.create({
+    name: req.body.name,
+    units: req.body.studyUnits
+  })
+  .then(schoolSubjects => res.json(schoolSubjects))
+  .catch(err => res.json(err))
+})
+
+app.get('/schoolSubjects', async (req,res) => {
+  try {
+    const data = await SchoolSubjectsModel.find({});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
 })
 
 app.listen(3000, () => {

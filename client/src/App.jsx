@@ -17,6 +17,7 @@ import AddClass from './pages/AddClass.jsx'
 import ClassesNavigate from './pages/ClassesNavigate.jsx'
 import StudentsInfoStudy from './pages/StudentsInfoStudy.jsx'
 import UpdateStudent from './pages/UpdateStudent.jsx'
+import CreateSchoolSubject from './pages/CreateSchoolSubject.jsx'
 
 function App() {
   return(
@@ -24,6 +25,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+          <Route path='/add-school-subject' element={ <CreateSchoolSubject /> } />
           <Route path='/' element={ <Main /> } />
           <Route path="/*" element={ <NoPage /> } />
           <Route path="/login" element={ <LogIn /> } />

@@ -44,10 +44,7 @@ function AddClass(){
     const Submit = (e) => {
         e.preventDefault();
         axios.put('http://localhost:3000/updateClass/' + ageGroup, {classesCounter})
-        .then(result => {
-            console.log(result)
-            navigateTo("..") //change to link or חזרה לאב
-        })
+        .then(result => navigateTo("../"))
         .catch(err => console.log(err))
     }
     

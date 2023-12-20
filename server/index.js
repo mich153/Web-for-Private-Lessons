@@ -99,6 +99,13 @@ app.put("/updateUser/:id" , (req, res) => {
   .catch(err => res.json(err))
 })
 
+app.delete("/deleteUser/:id", (req, res) => {
+  const id = req.params.id;
+  UserModel.findByIdAndDelete({_id: id})
+  .then(res => res.json(res))
+  .catch(err => res.json(err))
+})
+
 app.get('/students', async (req,res) => {
   try {
     const data = await StudentsModel.find({});
@@ -146,6 +153,13 @@ app.put("/updateStudent/:id" , (req, res) => {
     id: req.body.id
   })
   .then(user => res.json(user))
+  .catch(err => res.json(err))
+})
+
+app.delete("/deleteStudent/:id", (req, res) => {
+  const id = req.params.id;
+  StudentsModel.findByIdAndDelete({_id: id})
+  .then(res => res.json(res))
   .catch(err => res.json(err))
 })
 

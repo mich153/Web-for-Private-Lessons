@@ -26,8 +26,7 @@ function Header(){
         return(
             <Link to="/"><img src="/logo.png" alt='logo' width="380" height="100"/></Link>
         )
-    }
-    else if(userID){
+    } else if(userID){
         if(userType == 'admin'){
             return(
                 <>

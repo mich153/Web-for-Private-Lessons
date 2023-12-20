@@ -32,6 +32,16 @@ function Students(){
                 <td>{users[i].password}</td></>
     }
 
+    const Delete = (student) => {
+        axios.delete("http://localhost:3000/deleteUser/" + student.user)
+        .then(result => {
+            axios.delete("http://localhost:3000/deleteStudent/" + student._id)
+            .then(result => console.log(result))
+            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    }
+
     if(students.length > 0){
         return(
             <>
@@ -58,7 +68,7 @@ function Students(){
                                 {findUsers(student.user)}
                                 <td>{student.id}</td>
                                 <td>
-                                    <button className="form-button" onClick = {() => navigateTo("")}>הסרה</button>
+                                    <button className="form-button" onClick = {() => Delete(student)}>הסרה</button>
                                     <button className="form-button" onClick = {() => navigateTo("../update-student/" + student._id)}>עדכון</button>
                                 </td>
                             </tr> 

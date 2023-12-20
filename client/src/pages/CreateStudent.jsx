@@ -3,7 +3,6 @@ import axios from "axios";
 import './LogIn.css'
 import { useNavigate } from "react-router-dom";
 
-
 function CreateStudent(){
     const navigateTo = useNavigate();
 

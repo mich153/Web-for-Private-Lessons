@@ -13,7 +13,7 @@ function Admin() {
                 <button onClick = {() => navigateTo("")}>רשימת מורים</button>
                 <button onClick = {() => navigateTo("")}>רשימת רכזי מקצוע</button>
                 <button onClick = {() => navigateTo("classes")}>רשימת כיתות</button>
-                <button onClick = {() => navigateTo("")}>רשימת מקצועות לימוד</button>
+                <button onClick = {() => navigateTo("school-subjects")}>רשימת מקצועות לימוד</button>
             </div>
         </>
     );

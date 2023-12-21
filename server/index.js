@@ -266,6 +266,13 @@ app.get('/schoolSubjects', async (req,res) => {
   }
 })
 
+app.put('/updateUnits/:id', (req, res) => {
+  const id = req.params.id;
+  SchoolSubjectsModel.findByIdAndUpdate({_id: id}, {units: req.body.units})
+  .then(schoolSubjects => res.json(schoolSubjects))
+  .catch(err => res.json(err))
+})
+
 app.listen(3000, () => {
   console.log("Server is Running")
 })

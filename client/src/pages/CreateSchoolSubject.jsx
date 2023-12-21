@@ -30,7 +30,7 @@ function CreateSchoolSubject(){
             const studyUnits = units.slice(0, unitsCount);
             const name = subject;
             axios.post('http://localhost:3000/createSchoolSubject', {name, studyUnits})
-            .then(result => console.log(units, result))//navigateTo(""))
+            .then(result => navigateTo("../"))
             .catch(err => console.log(err))
         }
     }

@@ -18,6 +18,7 @@ import ClassesNavigate from './pages/ClassesNavigate.jsx'
 import StudentsInfoStudy from './pages/StudentsInfoStudy.jsx'
 import UpdateStudent from './pages/UpdateStudent.jsx'
 import CreateSchoolSubject from './pages/CreateSchoolSubject.jsx'
+import SchoolSubjectsList from './pages/SchoolSubjectsList.jsx'
 
 function App() {
   return(
@@ -25,7 +26,6 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path='/add-school-subject' element={ <CreateSchoolSubject /> } />
           <Route path='/' element={ <Main /> } />
           <Route path="/*" element={ <NoPage /> } />
           <Route path="/login" element={ <LogIn /> } />
@@ -38,6 +38,7 @@ function App() {
               teacher={<HomeTeacher />}
               coordinator={<HomeCoordinator />} />
             } />
+
             <Route path="classes" >
               <Route index element={ 
                 <AuthRequired 
@@ -48,6 +49,7 @@ function App() {
                 admin={<AddClass />} />
               } />
             </Route>
+
             <Route path='students-list'>
               <Route index element={
                 <AuthRequired
@@ -66,6 +68,17 @@ function App() {
               <Route path="update-student/:student_id" element={ 
                 <AuthRequired
                 admin={<UpdateStudent />} />
+              } />
+            </Route>
+
+            <Route path='school-subjects'>
+              <Route index element={
+                <AuthRequired
+                admin={<SchoolSubjectsList />} />
+              } />
+              <Route path='new' element={ 
+                <AuthRequired
+                admin={<CreateSchoolSubject />} />
               } />
             </Route>
           </Route>

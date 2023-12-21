@@ -61,13 +61,13 @@ function Classes(){
                                             document.getElementsByClassName("error")[index].innerHTML = "לא ניתן להוסיף עוד כיתות לשכבה זו";
                                             document.getElementsByClassName("error")[index].style.padding = "10px";
                                         }
-                                        }}>+</button> 
+                                    }}>+</button> 
                                     <button className="form-button" 
                                     onClick = {(e) => {
                                         document.getElementsByClassName("error")[index].innerHTML = "";
                                         document.getElementsByClassName("error")[index].style.padding = "0px";
                                         Update(cls._id, cls.classes_counter_in_age_group - 1);
-                                        }}>-</button>
+                                    }}>-</button>
                                     <button className="form-button" 
                                     onClick = {(e) => Update(cls._id, 0)}>מחיקה</button>
                                     <p className="error"></p>

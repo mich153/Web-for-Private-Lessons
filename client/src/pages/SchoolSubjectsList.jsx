@@ -8,7 +8,8 @@ function SchoolSubjectsList(){
     const [subjects, setSubjects] = useState([]);
     const [modal, setModal] = useState(false);
     const [modalError, setModalError] = useState(null);
-    const [studyUnit, setStudyUnit] = useState(null)
+    const [studyUnit, setStudyUnit] = useState(null);
+    const [subject, setSubject] = useState(null);
 
     const toggleModal = () => {
       setModal(!modal);
@@ -43,6 +44,25 @@ function SchoolSubjectsList(){
         const units = subjects[indexSubject].units;
         units.splice(indexUnit, 1);
         axios.put('http://localhost:3000/updateUnits/' + subjects[indexSubject]._id, {units})
+        .then(result => console.log(result))
+        .catch(err => console.log(err))
+    }
+
+    const Submit = (e) => {
+        e.preventDefault();
+        if(subject.units.includes(Number(studyUnit))){
+            setModalError(`כבר קיימת כמות כזאת של יח"ל במקצוע זה`);
+        } else{
+            subject.units.push(Number(studyUnit));
+            const units = subject.units;
+            axios.put('http://localhost:3000/updateUnits/' + subject._id, {units})
+            .then(result => toggleModal())
+            .catch(err => console.log(err))
+        }
+    }
+
+    const Delete = (indexSubject) =>{
+        axios.delete('http://localhost:3000/deleteSchoolSubject/' + subjects[indexSubject]._id)
         .then(result => console.log(result))
         .catch(err => console.log(err))
     }
@@ -118,10 +138,13 @@ function SchoolSubjectsList(){
                                     ))}
                                 </td>
                                 <td>
-                                    <button className="form-button">מחיקה</button>
+                                    <button className="form-button"
+                                    onClick={() => Delete(ind)}
+                                    >מחיקה</button>
                                     <button className="form-button"
                                     onClick={(e) => {
-                                        toggleModal()
+                                        setSubject(s);
+                                        toggleModal();
                                     }}>הוספת רמת לימוד</button>
                                 </td>
                             </tr>
@@ -132,7 +155,7 @@ function SchoolSubjectsList(){
                     <div className="modal">
                         <div onClick={toggleModal} className="overlay"></div>
                         <div className="modal-content">
-                            <form>
+                            <form onSubmit={Submit}>
                                 <label>כמה יח"ל?</label>
                                 <input
                                 type="number" min="1" max="15"
@@ -142,9 +165,8 @@ function SchoolSubjectsList(){
                                 }}
                                 required />
                                 <p className="error" id="modal-error">{modalError}</p>
-                                <button className="small-button" onClick={toggleModal}>ביטול</button>
+                                <button className="small-button" onClick={() => toggleModal()}>ביטול</button>
                                 <button type="submit" className="submit-btn-modal submit-button">הוספה</button>
-                                {/** check the value and if ok so add */}
                             </form>
                         </div>
                     </div>

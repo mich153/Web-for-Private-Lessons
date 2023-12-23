@@ -273,6 +273,13 @@ app.put('/updateUnits/:id', (req, res) => {
   .catch(err => res.json(err))
 })
 
+app.delete("/deleteSchoolSubject/:id", (req, res) => {
+  const id = req.params.id;
+  SchoolSubjectsModel.findByIdAndDelete({_id: id})
+  .then(res => res.json(res))
+  .catch(err => res.json(err))
+})
+
 app.listen(3000, () => {
   console.log("Server is Running")
 })

@@ -50,7 +50,7 @@ function ClassesNavigate(){
         return(
             <>
                 <h3>בחר.י כיתה כדי לראות את רשימת התלמידים.ות הלומדים.ות בה</h3>
-                
+                <button className="form-button" onClick = {() => navigateTo("add-student")}>הוספת תלמיד.ה</button>
                 <table>
                     <tbody>
                         {[...Array(maxClassesCounter).keys()].map((i, ind) => (

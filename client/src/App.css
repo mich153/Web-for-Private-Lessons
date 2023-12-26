@@ -202,3 +202,7 @@
     width: auto;
     height: auto;
   }
+
+  li{
+    text-align: right;
+  }

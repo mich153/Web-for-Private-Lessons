@@ -25,7 +25,7 @@ function SchoolSubjectsList(){
         axios.get('http://localhost:3000/schoolSubjects')
         .then(result => setSubjects(result.data))
         .catch(err => console.log(err))
-    })
+    }, [subjects])
 
     subjects.sort(function(a,b) {return (a.name).localeCompare(b.name)})
     for(let i = 0; i < subjects.length; i++){

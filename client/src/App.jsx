@@ -19,6 +19,9 @@ import StudentsInfoStudy from './pages/StudentsInfoStudy.jsx'
 import UpdateStudent from './pages/UpdateStudent.jsx'
 import CreateSchoolSubject from './pages/CreateSchoolSubject.jsx'
 import SchoolSubjectsList from './pages/SchoolSubjectsList.jsx'
+import CreateTeacher from './pages/CreateTeacher.jsx'
+import TeachersFullList from './pages/TeachersFullList.jsx'
+import UpdateTeacher from './pages/UpdateTeacher.jsx'
 
 function App() {
   return(
@@ -81,6 +84,22 @@ function App() {
                 admin={<CreateSchoolSubject />} />
               } />
             </Route>
+            
+            <Route path='teachers-list'>
+              <Route index element={
+                <AuthRequired
+                admin={<TeachersFullList />} />
+              } />
+              <Route path='add-teacher' element={
+                <AuthRequired
+                admin={<CreateTeacher />} />
+              } />
+              <Route path='update-teacher/:teacher_id' element={
+                <AuthRequired
+                admin={<UpdateTeacher />} />
+              } />
+            </Route>
+           
           </Route>
         </Routes>
         <Footer />

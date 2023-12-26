@@ -15,7 +15,7 @@ function CreateSchoolSubject(){
         axios.get('http://localhost:3000/schoolSubjects')
         .then(result => setSubjects(result.data))
         .catch(err => console.log(err))
-    })
+    }, [subjects])
     
     const Submit = (e) => {
         e.preventDefault();

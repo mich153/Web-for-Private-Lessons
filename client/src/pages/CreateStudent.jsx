@@ -103,13 +103,13 @@ function CreateStudent(){
                     </div>
                     <div id="classes-number">
                         <label>מספר כיתה</label>
-                            <select name="מספר כיתה" id="select-classes-number"
-                            onChange={(e) => {
-                                setClassNumber(e.target.options.selectedIndex);
-                            }}
-                            required>
-                                <option value="">בחר.י מספר כיתה</option>
-                            </select>
+                        <select name="מספר כיתה" id="select-classes-number"
+                        onChange={(e) => {
+                            setClassNumber(e.target.options.selectedIndex);
+                        }}
+                        required>
+                            <option value="">בחר.י מספר כיתה</option>
+                        </select>
                     </div>
                     
                     <button className="submit-button">הוספה</button>

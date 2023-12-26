@@ -8,7 +8,7 @@ const UserModel = require("./models/Users");
 const ClassModel = require("./models/Classes");
 const StudentsModel = require("./models/Students");
 const SchoolSubjectsModel = require("./models/SchoolSubjects");
-const SchoolSubjects = require('./models/SchoolSubjects');
+const TeachersModel = require('./models/Teachers');
 
 const app = express();
 app.use(cors({
@@ -277,6 +277,49 @@ app.delete("/deleteSchoolSubject/:id", (req, res) => {
   const id = req.params.id;
   SchoolSubjectsModel.findByIdAndDelete({_id: id})
   .then(res => res.json(res))
+  .catch(err => res.json(err))
+})
+
+app.post("/createTeacter", async (req, res) => {
+  await TeachersModel.create({
+    user: req.body.user,
+    lessons: req.body.teachingLessons
+  })
+  .then(teachers => res.json(teachers))
+  .catch(err => res.json(err))
+})
+
+app.get('/teachers', async (req,res) => {
+  try {
+    const data = await TeachersModel.find({});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
+app.get('/teacher/:id', async (req,res) => {
+  try {
+    const data = await TeachersModel.findOne({_id: req.params.id});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
+app.delete("/deleteTeacher/:id", (req, res) => {
+  const id = req.params.id;
+  TeachersModel.findByIdAndDelete({_id: id})
+  .then(res => res.json(res))
+  .catch(err => res.json(err))
+})
+
+app.put("/updateTeacher/:id", (req, res) => {
+  const id = req.params.id;
+  TeachersModel.findByIdAndUpdate({_id: id}, {
+    lessons: req.body.teachingLessons
+  })
+  .then(user => res.json(user))
   .catch(err => res.json(err))
 })
 

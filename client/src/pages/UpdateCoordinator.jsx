@@ -25,12 +25,14 @@ function UpdateCoordinator(){
             if(!lessons || lessons.length == 0){
               setLessons(l);
             }
-            setMajor(result.data.major);
-            let major_options = document.getElementById("major").childNodes;
-            for(let i = 0; i < major_options.length; i++){
-                if(major_options[i].getAttribute("data-key") == result.data.major){
-                    major_options[i].setAttribute("selected", true);
-                    break;
+            if(!major || major.length == 0){
+                setMajor(result.data.major);
+                let major_options = document.getElementById("major").childNodes;
+                for(let i = 0; i < major_options.length; i++){
+                    if(major_options[i].getAttribute("data-key") == result.data.major){
+                        major_options[i].setAttribute("selected", true);
+                        break;
+                    }
                 }
             }
             axios.get("http://localhost:3000/user/" + result.data.user)

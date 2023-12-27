@@ -54,7 +54,7 @@ function CoordinatorsList(){
         return(
             <>
                 <h1>רשימת המורים.ות</h1>
-                <button className="form-button" onClick = {() => navigateTo("add-coordinator")}>הוספת מורה</button>
+                <button className="form-button" onClick = {() => navigateTo("add-coordinator")}>הוספת רכז.ת</button>
                 <table>
                     <thead>
                         <tr>
@@ -100,7 +100,7 @@ function CoordinatorsList(){
         return(
             <>
                 <h1>רשימת המורים.ות</h1>
-                <button className="form-button" onClick = {() => navigateTo("add-coordinators")}>הוספת מורה</button>
+                <button className="form-button" onClick = {() => navigateTo("add-coordinators")}>הוספת רכז.ת</button>
                 <h3>אין מורים.ות בבית הספר שניתן להציג</h3>
             </>
         )

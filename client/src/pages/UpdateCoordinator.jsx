@@ -2,28 +2,36 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-function UpdateTeacher(){
+function UpdateCoordinator(){
     const navigateTo = useNavigate();
 
-    const teacherID = useParams();
-    const [teacter, setTeacher] = useState({});
+    const coordinatorID = useParams();
+    const [coordinator, setCoordinator] = useState([]);
     const [user, setUser] = useState({})
     const [subjects, setSubjects] = useState([]);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [lessons, setLessons] = useState([]);
-    const [error, setError] = useState(null);
+    const [major, setMajor] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:3000/teacher/" + teacherID.teacher_id)
+        axios.get("http://localhost:3000/coordinator/" + coordinatorID.coordinator_id)
         .then(result => {
-            setTeacher(result.data);
+            setCoordinator(result.data);
             const l = result.data.lessons.reduce(function(obj, v) {
                 obj[v[0]] = v[1];
                 return obj;
               }, {})
             if(!lessons || lessons.length == 0){
               setLessons(l);
+            }
+            setMajor(result.data.major);
+            let major_options = document.getElementById("major").childNodes;
+            for(let i = 0; i < major_options.length; i++){
+                if(major_options[i].getAttribute("data-key") == result.data.major){
+                    major_options[i].setAttribute("selected", true);
+                    break;
+                }
             }
             axios.get("http://localhost:3000/user/" + result.data.user)
                 .then(result => {
@@ -57,29 +65,26 @@ function UpdateTeacher(){
                     delete temp[key];
                 }
             });
+            setLessons(temp);
         }
     }
 
     function Submit(e){
         e.preventDefault();
-        if(!lessons || Object.keys(lessons).length == 0){
-            setError("לא נבחר אף מקצוע לימוד");
-        } else{
-            axios.put("http://localhost:3000/updateUser/" + user._id, {firstName, lastName})
-            .then(result => {
-                var teachingLessons = Object.keys(lessons).map((key) => [key, lessons[key]])
-                axios.put("http://localhost:3000/updateTeacher/" + teacter._id, {teachingLessons})
-                .then(result => navigateTo(`..`))
-                .catch(err => console.log(err))
-            })
+        axios.put("http://localhost:3000/updateUser/" + user._id, {firstName, lastName})
+        .then(result => {
+            var teachingLessons = Object.keys(lessons).map((key) => [key, lessons[key]])
+            axios.put("http://localhost:3000/updateCoordinator/" + coordinator._id, {teachingLessons, major})
+            .then(result => navigateTo(`..`))
             .catch(err => console.log(err))
-        }
+        })
+        .catch(err => console.log(err))
     }
     
     if(subjects){
         return(
             <>
-                <h1>עדכון פרטי מורה</h1>
+                <h1>עדכון פרטי רכז.ת</h1>
 
                 <form onSubmit={Submit}>
                     <div>
@@ -97,6 +102,23 @@ function UpdateTeacher(){
                         required/>
                     </div>
                     <div>
+                        <label>המקצוע שהוא/היא הרכז/ת שלו</label>
+                        <select id='major'
+                        onChange={(e) => {
+                            const selectedIndex = e.target.options.selectedIndex;
+                            const selected = e.target.options[selectedIndex].getAttribute('data-key');
+                            setMajor(selected);
+                        }}
+                        required>
+                            <option value="">בחר מקצוע</option>
+                            {subjects.map((s, i) => (
+                                <option key={s._id} data-key={s._id} value={s.name}> 
+                                    {s.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
                         <label>מקצועות לימוד</label>
                         {subjects.map((s, i) => (
                             <ul id={s._id}>
@@ -112,23 +134,21 @@ function UpdateTeacher(){
                                     ))}
                                 </ul>
                             </ul>
-                            
                         ))}
                     </div>
-                    <p className="error">{error}</p>
-                    <button className="submit-button">עידון</button>
+                    <button className="submit-button">עידכון</button>
                 </form>
             </>
         )
     } else{
         return(
             <>
-                <h1>עדכון פרטי מורה</h1>
+                <h1>עדכון פרטי רכז.ת</h1>
 
-                <h3>אין מקצועות לימוד בבית הספר שניתן לשייך אליהם מורים.ות</h3>
+                <h3>אין מקצועות לימוד בבית הספר שניתן לשייך אליהם רכזים.ות</h3>
             </>
         )
     }
 }
 
-export default UpdateTeacher;
+export default UpdateCoordinator;

@@ -34,8 +34,8 @@ function CreateStudent(){
                         }
                     }
                     classesInUse.find(function(cls){return cls._id == result.data.cls})?
-                    classesCounter = classesInUse.find(function(cls){return cls._id == result.data.cls}).classes_counter_in_age_group:
-                    classesCounter = 0;
+                        classesCounter = classesInUse.find(function(cls){return cls._id == result.data.cls}).classes_counter_in_age_group:
+                        classesCounter = 0;
                     var droplist = document.getElementById("select-classes-number");
                     while(droplist.options.length) 
                         droplist.options.remove(0);
@@ -163,8 +163,7 @@ function CreateStudent(){
                             <option value="">בחר.י מספר כיתה</option>
                         </select>
                 </div>
-                
-                <button className="submit-button">הוספה</button>
+                <button className="submit-button">עידכון</button>
             </form>
         </>
     )

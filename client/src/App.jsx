@@ -22,6 +22,9 @@ import SchoolSubjectsList from './pages/SchoolSubjectsList.jsx'
 import CreateTeacher from './pages/CreateTeacher.jsx'
 import TeachersFullList from './pages/TeachersFullList.jsx'
 import UpdateTeacher from './pages/UpdateTeacher.jsx'
+import CreateCoordinators from './pages/CreateCoordinators.jsx'
+import CoordinatorsList from './pages/CoordinatorsList.jsx'
+import UpdateCoordinator from './pages/UpdateCoordinator.jsx'
 
 function App() {
   return(
@@ -100,6 +103,21 @@ function App() {
               } />
             </Route>
            
+            <Route path='coordinators-list'>
+              <Route index element={
+                <AuthRequired
+                admin={<CoordinatorsList />} />
+              } />
+              <Route path='add-coordinator' element={
+                <AuthRequired
+                admin={<CreateCoordinators />} />
+              } />
+              <Route path='update-coordinator/:coordinator_id' element={
+                <AuthRequired
+                admin={<UpdateCoordinator />} />
+              } />
+            </Route>
+
           </Route>
         </Routes>
         <Footer />

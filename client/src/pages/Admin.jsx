@@ -11,7 +11,7 @@ function Admin() {
             <div className='actions'>
                 <button onClick = {() => navigateTo("students-list")}>רשימת תלמידים</button>
                 <button onClick = {() => navigateTo("teachers-list")}>רשימת מורים</button>
-                <button onClick = {() => navigateTo("")}>רשימת רכזי מקצוע</button>
+                <button onClick = {() => navigateTo("coordinators-list")}>רשימת רכזי מקצוע</button>
                 <button onClick = {() => navigateTo("classes")}>רשימת כיתות</button>
                 <button onClick = {() => navigateTo("school-subjects")}>רשימת מקצועות לימוד</button>
             </div>

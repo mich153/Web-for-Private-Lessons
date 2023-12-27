@@ -9,6 +9,7 @@ const ClassModel = require("./models/Classes");
 const StudentsModel = require("./models/Students");
 const SchoolSubjectsModel = require("./models/SchoolSubjects");
 const TeachersModel = require('./models/Teachers');
+const CoordinatorsModel = require('./models/Coordinators');
 
 const app = express();
 app.use(cors({
@@ -23,6 +24,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/school");
 const ACCESS_TOKEN_KEY = crypto.randomBytes(32).toString('hex');
 const REFRESH_TOKEN_KEY = crypto.randomBytes(32).toString('hex');
 
+//classes model requests
 app.post("/createClasses", (req, res) => {
   ClassModel.create({
       age_group: req.body.ageGroup,
@@ -48,6 +50,7 @@ app.put('/updateClass/:id', (req, res) => {
   .catch(err => res.json(err))
 })
 
+//users model requests
 app.get('/users/:type', async (req,res) => {
   try {
     const data = await UserModel.find({type: req.params.type});
@@ -108,6 +111,7 @@ app.delete("/deleteUser/:id", (req, res) => {
   .catch(err => res.json(err))
 })
 
+//students model requests
 app.get('/students', async (req,res) => {
   try {
     const data = await StudentsModel.find({});
@@ -173,6 +177,7 @@ async function getUser(u_name, pwd){
   return user;
 }
 
+//login or logout: jwt&cookies
 app.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -248,6 +253,7 @@ app.get("/logout", (req, res) => {
   return res.json({Logout: true});
 })
 
+//school subjects model requests
 app.post("/createSchoolSubject", (req, res) => {
   SchoolSubjectsModel.create({
     name: req.body.name,
@@ -280,6 +286,7 @@ app.delete("/deleteSchoolSubject/:id", (req, res) => {
   .catch(err => res.json(err))
 })
 
+//teachers model requests
 app.post("/createTeacter", async (req, res) => {
   await TeachersModel.create({
     user: req.body.user,
@@ -323,6 +330,54 @@ app.put("/updateTeacher/:id", (req, res) => {
   .catch(err => res.json(err))
 })
 
+//coordinators model requests
+app.post("/createCoordinators", async (req, res) => {
+  await CoordinatorsModel.create({
+    user: req.body.user,
+    lessons: req.body.teachingLessons,
+    major: req.body.major
+  })
+  .then(coordinators => res.json(coordinators))
+  .catch(err => res.json(err))
+})
+
+app.get('/coordinators', async (req,res) => {
+  try {
+    const data = await CoordinatorsModel.find({});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
+app.get('/coordinator/:id', async (req,res) => {
+  try {
+    const data = await CoordinatorsModel.findOne({_id: req.params.id});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
+app.delete("/deleteCoordinator/:id", (req, res) => {
+  const id = req.params.id;
+  CoordinatorsModel.findByIdAndDelete({_id: id})
+  .then(res => res.json(res))
+  .catch(err => res.json(err))
+})
+
+app.put("/updateCoordinator/:id", (req, res) => {
+  const id = req.params.id;
+  CoordinatorsModel.findByIdAndUpdate({_id: id}, {
+    lessons: req.body.teachingLessons,
+    major: req.body.major
+  })
+  .then(user => res.json(user))
+  .catch(err => res.json(err))
+})
+
+
+//connect to the port number: 3000
 app.listen(3000, () => {
   console.log("Server is Running")
 })

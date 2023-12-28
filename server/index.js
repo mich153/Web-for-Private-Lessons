@@ -352,7 +352,7 @@ app.get('/coordinators', async (req,res) => {
 
 app.get('/coordinator/:id', async (req,res) => {
   try {
-    const data = await CoordinatorsModel.findOne({_id: req.params.id});
+    const data = await CoordinatorsModel.findOne({user: req.params.id});
     res.send(data);
   } catch (err) {
     throw err;

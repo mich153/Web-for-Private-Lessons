@@ -11,7 +11,7 @@ function StudentsInfoStudy(){
         axios.get("http://localhost:3000/studentsFromClass/" + class_id)
         .then(result => { 
             setStudents(result.data.filter(filterStudents));
-            axios.get("http://localhost:3000/user/" + "student")
+            axios.get("http://localhost:3000/users/" + "student")
             .then(result => setUsers(result.data))
             .catch(err => console.log(err))
         })

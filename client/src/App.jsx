@@ -25,6 +25,8 @@ import UpdateTeacher from './pages/UpdateTeacher.jsx'
 import CreateCoordinators from './pages/CreateCoordinators.jsx'
 import CoordinatorsList from './pages/CoordinatorsList.jsx'
 import UpdateCoordinator from './pages/UpdateCoordinator.jsx'
+import ClassesNavigateCdn from './pages/ClassesNavigteCdn.jsx'
+import SpecificTeachers from './pages/SpecificTeachers.jsx'
 
 function App() {
   return(
@@ -60,7 +62,7 @@ function App() {
               <Route index element={
                 <AuthRequired
                 admin={<ClassesNavigate />}
-                coordinator={<ClassesNavigate />} />
+                coordinator={<ClassesNavigateCdn />} />
               } />
               <Route path=":class_id/:class_number" element={
                 <AuthRequired
@@ -92,6 +94,10 @@ function App() {
               <Route index element={
                 <AuthRequired
                 admin={<TeachersFullList />} />
+              } />
+              <Route path=':subject' element={
+                <AuthRequired
+                coordinator={<SpecificTeachers />} />
               } />
               <Route path='add-teacher' element={
                 <AuthRequired

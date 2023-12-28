@@ -7,7 +7,12 @@ const TeachersSchema = new mongoose.Schema(
             ref: "users",
             require: true
         },
-        lessons: mongoose.Schema.Types.Mixed
+        lessons: mongoose.Schema.Types.Mixed,
+        teaching: {
+            type: Number,
+            min: 0,
+            default: 0
+        }
     }
 );
 

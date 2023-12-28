@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
-function ClassesNavigate(){    
+function ClassesNavigateCdn(){    
     const navigateTo = useNavigate();
 
     const [needToMakeTable, setNeedToMakeTable] = useState(false);
@@ -47,8 +47,7 @@ function ClassesNavigate(){
             setNeedToMakeTable(true);
         return(
             <>
-                <h3>בחר.י כיתה כדי לראות את רשימת התלמידים.ות הלומדים.ות בה</h3>
-                <button className="form-button" onClick = {() => navigateTo("add-student")}>הוספת תלמיד.ה</button>
+                <h3>בחר.י כיתה כדי לראות את מצב הנוכחות בתיגבורים של תלמידי הלומדים בה</h3>
                 <table>
                     <tbody>
                         {[...Array(maxClassesCounter).keys()].map((i, ind) => (
@@ -66,12 +65,12 @@ function ClassesNavigate(){
     else{
         return(
             <>
-                <h3>בחר.י כיתה כדי לראות את רשימת התלמידים.ות הלומדים.ות בה</h3>
+                <h3>בחר.י כיתה כדי לראות את מצב הנוכחות בתיגבורים של תלמידי הלומדים בה</h3>
                 
-                <h3>אין שכבות בבית הספר להצגה</h3>
+                <h3>אין כיתות בבית הספר להצגה</h3>
             </>
         );
     }
 }
 
-export default ClassesNavigate;
+export default ClassesNavigateCdn;

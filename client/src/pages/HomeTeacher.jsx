@@ -1,5 +1,4 @@
 import React from 'react'
-import Toolbar from '../components/Toolbar';
 import { useNavigate } from 'react-router-dom';
 
 function HomeTeacher() {
@@ -7,8 +6,6 @@ function HomeTeacher() {
     
     return(
         <>
-            <Toolbar />
-
             <h1>ברוכים הבאים</h1>
 
             <div className='actions'>

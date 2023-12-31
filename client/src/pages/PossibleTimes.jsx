@@ -47,7 +47,7 @@ function PossibleTimes(){
 
     return(
         <>
-            <h1>לו"ז נוכחי</h1>
+            <h1>זמנים אפשריים לביצוע תגבורים</h1>
             <button className="form-button" onClick = {() => navigateTo("set-times")}>שינוי</button>
             <table>
                 <thead>

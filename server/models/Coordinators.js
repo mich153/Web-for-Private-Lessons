@@ -11,7 +11,8 @@ const CoordinatorsSchema = new mongoose.Schema(
         major: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "schoolSubjects"
-        }
+        },
+        possible_times: mongoose.Schema.Types.Mixed
     }
 );
 

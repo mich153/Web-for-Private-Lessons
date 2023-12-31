@@ -12,7 +12,8 @@ const TeachersSchema = new mongoose.Schema(
             type: Number,
             min: 0,
             default: 0
-        }
+        },
+        possible_times: mongoose.Schema.Types.Mixed
     }
 );
 

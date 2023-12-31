@@ -314,6 +314,15 @@ app.get('/teacher/:id', async (req,res) => {
   }
 })
 
+app.get('/findTeacherByUser/:id', async (req,res) => {
+  try {
+    const data = await TeachersModel.findOne({user: req.params.id});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
 app.delete("/deleteTeacher/:id", (req, res) => {
   const id = req.params.id;
   TeachersModel.findByIdAndDelete({_id: id})
@@ -325,6 +334,15 @@ app.put("/updateTeacher/:id", (req, res) => {
   const id = req.params.id;
   TeachersModel.findByIdAndUpdate({_id: id}, {
     lessons: req.body.teachingLessons
+  })
+  .then(user => res.json(user))
+  .catch(err => res.json(err))
+})
+
+app.put("/updateTimesForTeacher/:id", (req, res) => {
+  const id = req.params.id;
+  TeachersModel.findByIdAndUpdate({_id: id}, {
+    possible_times: req.body.possible_times
   })
   .then(user => res.json(user))
   .catch(err => res.json(err))
@@ -376,6 +394,14 @@ app.put("/updateCoordinator/:id", (req, res) => {
   .catch(err => res.json(err))
 })
 
+app.put("/updateTimesForCoordinator/:id", (req, res) => {
+  const id = req.params.id;
+  CoordinatorsModel.findByIdAndUpdate({_id: id}, {
+    possible_times: req.body.possible_times
+  })
+  .then(user => res.json(user))
+  .catch(err => res.json(err))
+})
 
 //connect to the port number: 3000
 app.listen(3000, () => {

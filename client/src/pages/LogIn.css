@@ -16,6 +16,12 @@ input[type=text], input[type=password] {
     margin: 10px 5px 25px;
     vertical-align: -webkit-baseline-middle;
   }
+  input[type=time] {
+    font-size: 20px;
+    font-family: helvetica;
+    padding: 12px 20px;
+    margin: 8px 10px;
+  }
 
   input[type=number], select {
     width: 20%;

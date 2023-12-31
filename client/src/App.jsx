@@ -27,6 +27,8 @@ import CoordinatorsList from './pages/CoordinatorsList.jsx'
 import UpdateCoordinator from './pages/UpdateCoordinator.jsx'
 import ClassesNavigateCdn from './pages/ClassesNavigteCdn.jsx'
 import SpecificTeachers from './pages/SpecificTeachers.jsx'
+import DefineTimes from './pages/DefineTimes.jsx'
+import PossibleTimes from './pages/PossibleTimes.jsx'
 
 function App() {
   return(
@@ -121,6 +123,19 @@ function App() {
               <Route path='update-coordinator/:coordinator_id' element={
                 <AuthRequired
                 admin={<UpdateCoordinator />} />
+              } />
+            </Route>
+            
+            <Route path='possible-times'>
+              <Route index element={
+                  <AuthRequired
+                  coordinator={<PossibleTimes />}
+                  teacher={<PossibleTimes />} />
+                } />
+              <Route path='set-times' element={
+                <AuthRequired
+                coordinator={<DefineTimes />}
+                teacher={<DefineTimes />} />
               } />
             </Route>
 

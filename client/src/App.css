@@ -206,3 +206,7 @@
   li{
     text-align: right;
   }
+
+  b, ins{
+    text-align: right;
+  }

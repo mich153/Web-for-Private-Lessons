@@ -10,6 +10,7 @@ const StudentsModel = require("./models/Students");
 const SchoolSubjectsModel = require("./models/SchoolSubjects");
 const TeachersModel = require('./models/Teachers');
 const CoordinatorsModel = require('./models/Coordinators');
+const LessonsModel = require('./models/Lessons');
 
 const app = express();
 app.use(cors({
@@ -145,6 +146,15 @@ app.post("/createStudent", (req, res) => {
 app.get('/student/:id', async (req,res) => {
   try {
     const data = await StudentsModel.findOne({_id: req.params.id});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
+app.get('/findStudentByUserID/:id', async (req,res) => {
+  try {
+    const data = await StudentsModel.findOne({user: req.params.id});
     res.send(data);
   } catch (err) {
     throw err;
@@ -400,6 +410,55 @@ app.put("/updateTimesForCoordinator/:id", (req, res) => {
     possible_times: req.body.possible_times
   })
   .then(user => res.json(user))
+  .catch(err => res.json(err))
+})
+
+//lessons model requests
+app.post("/createLessson", (req, res) => {
+  LessonsModel.create({
+    teacher: req.body.teacher,
+    student: req.body.student,
+    day: req.body.day,
+    time_start: req.body.start,
+    time_end: req.body.end,
+    subject: req.body.subject_id,
+    unit: req.body.unit
+  })
+  .then(lessons => res.json(lessons))
+  .catch(err => res.json(err))
+})
+
+app.get('/lessons', async (req,res) => {
+  try {
+    const data = await LessonsModel.find({});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
+app.get('/lessonsByStudens/:id', async (req,res) => {
+  try {
+    const data = await LessonsModel.find({student: req.params.id});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
+app.get('/lessonsByTeacher/:id', async (req,res) => {
+  try {
+    const data = await LessonsModel.find({teacher: req.params.id});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
+app.delete("/deleteCoordinator/:id", (req, res) => {
+  const id = req.params.id;
+  LessonsModel.findByIdAndDelete({_id: id})
+  .then(res => res.json(res))
   .catch(err => res.json(err))
 })
 

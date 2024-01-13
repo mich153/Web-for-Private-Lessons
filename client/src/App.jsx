@@ -29,6 +29,8 @@ import ClassesNavigateCdn from './pages/ClassesNavigteCdn.jsx'
 import SpecificTeachers from './pages/SpecificTeachers.jsx'
 import DefineTimes from './pages/DefineTimes.jsx'
 import PossibleTimes from './pages/PossibleTimes.jsx'
+import SearchTeachers from './pages/SearchTeachers.jsx'
+import LessonsRegistration from './pages/LessonsRegistration.jsx'
 
 function App() {
   return(
@@ -136,6 +138,17 @@ function App() {
                 <AuthRequired
                 coordinator={<DefineTimes />}
                 teacher={<DefineTimes />} />
+              } />
+            </Route>
+
+            <Route path='registration'>
+              <Route index element={
+                <AuthRequired
+                student={<SearchTeachers />} />
+              } />
+              <Route path=':subject_id/:unit' element={
+                <AuthRequired
+                student={<LessonsRegistration />} />
               } />
             </Route>
 

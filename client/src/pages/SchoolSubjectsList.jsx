@@ -170,7 +170,7 @@ function SchoolSubjectsList(){
                             </form>
                         </div>
                     </div>
-                )}     
+                )}
             </>
         )
     } else{

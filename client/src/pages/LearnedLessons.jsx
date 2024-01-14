@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 
 function LearnedLessons(){
     const [user, setUser] = useState({learned_lessons: []});
-    const [subjects, setSubjects] = useState();
+    const [subjects, setSubjects] = useState([]);
     
     useEffect(() => {
         axios.get("http://localhost:3000/findStudentByUserID/" + window.localStorage.getItem("id"))
@@ -17,7 +17,7 @@ function LearnedLessons(){
     
     function findSubject(id){
         let index = subjects.findIndex(function(s){return s._id == id});
-        return index == -1? index: subjects[index].name;
+        return index == -1? '': subjects[index].name;
     }
 
     return(

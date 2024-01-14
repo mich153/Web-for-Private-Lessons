@@ -59,6 +59,17 @@ function SpecificTeachers(){
         )))
     }
 
+    function lessonsCount(teached){
+        if(!teached){
+            return 0;
+        }
+        let index = teached.findIndex(function(l){return l[0] == subjectID.subject})
+        if(index == -1){
+            return 0;
+        }
+        return teached[index][1];
+    }
+
     if(teachers.length > 0){
         return(
             <>
@@ -78,7 +89,7 @@ function SpecificTeachers(){
                             <tr key={index}>
                                 <td className="index-column">{index + 1}</td>
                                 {findUsers(teacher.user)}
-                                <td>{teacher.teaching}</td>
+                                <td>{lessonsCount(teacher.teaching)}</td>
                                 <td>
                                     <ul>
                                         {findUnits(teacher)}

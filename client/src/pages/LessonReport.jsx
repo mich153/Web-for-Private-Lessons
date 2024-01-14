@@ -75,7 +75,7 @@ function LessonsReport(){
             })
             .catch(err => console.log(err))
         }
-    })
+    }, [subjects])
 
     function findSubject(id){
         let index = subjects.findIndex(function(s){return s._id == id});
@@ -198,8 +198,8 @@ function LessonsReport(){
 
     return(
         <>
-            <h1>לוח תגבורים</h1>
-            <button className='form-button' onClick={(e) => navigateTo('../registration')}>הוספה</button>
+            <h1>דיווח על ביצוע שיעור</h1>
+            <h3>בחר את השיעור שברצונך לדווח שבוצע</h3>
             <table>
                 <thead>
                     <tr>

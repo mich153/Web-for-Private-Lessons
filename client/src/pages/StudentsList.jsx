@@ -7,8 +7,13 @@ function Students(){
     const {class_id, class_number} = useParams();
     const [students, setStudents] = useState([]);
     const [users, setUsers] = useState([]);
+    const [cls, setClass] = useState();
     
     useEffect(() => {
+        axios.get("http://localhost:3000/class/" + class_id)
+        .then(result => setClass(result.data))
+        .catch(err => console.log(err))
+
         axios.get("http://localhost:3000/studentsFromClass/" + class_id)
         .then(result => { 
             setStudents(result.data.filter(filterStudents));
@@ -45,7 +50,7 @@ function Students(){
     if(students.length > 0){
         return(
             <>
-                <h1>רשימת התלמידים.ות בכיתה </h1>
+                <h1>רשימת התלמידים.ות בכיתה {cls.age_group + class_number}</h1>
                 
                 <button className="form-button" onClick = {() => navigateTo("../add-student")}>הוספת תלמיד.ה</button>
                 

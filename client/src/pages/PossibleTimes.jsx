@@ -25,23 +25,24 @@ function PossibleTimes(){
             })
             .catch(err => console.log(err))
         }
-    })
+    }, [times])
 
     function printTimes(day){
-        let i = times.findIndex(function(time){return time[0] == day})
-        if(i >= 0){
-            
-            return(
-                <td id={i}>
-                    <ul>
-                        {times[i].slice(1).map((time, ind) => (
-                            <li>{time[0] + '-' + time[1]}</li>
-                        ))}
-                    </ul>
-                </td>
-            )
-        } else{
-            return (<td id={i}></td>)
+        if(times){
+            let i = times.findIndex(function(time){return time[0] == day})
+            if(i >= 0){
+                return(
+                    <td id={i}>
+                        <ul>
+                            {times[i].slice(1).map((time, ind) => (
+                                <li>{time[0] + '-' + time[1]}</li>
+                            ))}
+                        </ul>
+                    </td>
+                )
+            } else{
+                return (<td id={i}></td>)
+            }
         }
     }
 

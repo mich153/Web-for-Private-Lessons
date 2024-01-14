@@ -35,6 +35,7 @@ import LessonsList from './pages/LessonsList.jsx'
 import Profile from './pages/Profile.jsx'
 import ChangePassword from './pages/ChangePassword.jsx'
 import LessonsReport from './pages/LessonReport.jsx'
+import LearnedLessons from './pages/LearnedLessons.jsx'
 
 function App() {
   return(
@@ -181,6 +182,11 @@ function App() {
                 student={<LessonsList />}
                 coordinator={<LessonsList />}
                 teacher={<LessonsList />} />
+            } />
+
+            <Route path='learned' element={
+                <AuthRequired
+                student={<LearnedLessons />}/>
             } />
 
           </Route>

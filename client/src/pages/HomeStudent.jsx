@@ -11,7 +11,7 @@ function HomeStudent() {
             <div className='actions'>
                 <button onClick = {() => navigateTo("lessons-list")}>צפייה בלוח תגבורים</button>
                 <button onClick = {() => navigateTo("registration")}>הרשמה לתגבור</button>
-                <button onClick = {() => navigateTo("")}>נוכחות</button>
+                <button onClick = {() => navigateTo("learned")}>נוכחות</button>
             </div>
         </>
     );

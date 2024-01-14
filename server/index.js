@@ -44,6 +44,15 @@ app.get('/classes', async (req,res) => {
   }
 })
 
+app.get('/class/:id', async (req,res) => {
+  try {
+    const data = await ClassModel.findOne({_id: req.params.id});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
 app.put('/updateClass/:id', (req, res) => {
   const id = req.params.id;
   ClassModel.findByIdAndUpdate({_id: id}, {classes_counter_in_age_group: req.body.classesCounter})
@@ -275,9 +284,9 @@ app.get("/dashboard", verifyUser, (req, res) => {
   return res.json({valid: true, message: "authorized"})
 })
 
-app.get("/logout", (req, res) => {
+app.post("/logout", (req, res) => {
   res.cookie('accessToken', "none", {maxAge: 5000});
-  res.cookie('refreshToken', "none", {maxAge: 10000, httpOnly: true, secure: true});
+  res.cookie('refreshToken', "none", {maxAge: 8000});
   return res.json({Logout: true});
 })
 

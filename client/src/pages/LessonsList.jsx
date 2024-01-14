@@ -179,26 +179,49 @@ function LessonsList(){
         }
     }
 
-    return(
-        <>
-            <h1>לוח תגבורים</h1>
-            <button className='form-button' onClick={(e) => navigateTo('../registration')}>הוספה</button>
-            <table>
-                <thead>
-                    <tr>
-                        {days.map((day, index) => (<th id={day}>{day}</th>))}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {days.map((day, index) => (
-                            <td>{printTimes(day)}</td>
-                        ))}
-                    </tr>
-                </tbody>
-            </table>
-        </>
-    )
+    if(user.type == 'student'){
+        return(
+            <>
+                <h1>לוח תגבורים</h1>
+                <button className='form-button' onClick={(e) => navigateTo('../registration')}>הוספה</button>
+                <table>
+                    <thead>
+                        <tr>
+                            {days.map((day, index) => (<th id={day}>{day}</th>))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {days.map((day, index) => (
+                                <td>{printTimes(day)}</td>
+                            ))}
+                        </tr>
+                    </tbody>
+                </table>
+            </>
+        )
+    } else{
+        return(
+            <>
+                <h1>לוח תגבורים</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            {days.map((day, index) => (<th id={day}>{day}</th>))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {days.map((day, index) => (
+                                <td>{printTimes(day)}</td>
+                            ))}
+                        </tr>
+                    </tbody>
+                </table>
+            </>
+        )
+    }
+    
 }
 
 export default LessonsList;

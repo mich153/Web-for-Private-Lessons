@@ -6,8 +6,18 @@ function StudentsInfoStudy(){
     const {class_id, class_number} = useParams();
     const [students, setStudents] = useState([]);
     const [users, setUsers] = useState([]);
+    const [user, setUser] = useState();
+    const [cls, setClass] = useState();
     
     useEffect(() => {
+        axios.get("http://localhost:3000/class/" + class_id)
+        .then(result => setClass(result.data))
+        .catch(err => console.log(err))
+        
+        axios.get("http://localhost:3000/coordinator/" + window.localStorage.getItem("id"))
+        .then(result => setUser(result.data))
+        .catch(err => console.log(err))
+        
         axios.get("http://localhost:3000/studentsFromClass/" + class_id)
         .then(result => { 
             setStudents(result.data.filter(filterStudents));
@@ -29,10 +39,21 @@ function StudentsInfoStudy(){
                 <td>{users[i].first_name}</td></>
     }
 
+    function lessonsCount(learned){
+        if(!learned){
+            return 0;
+        }
+        let index = learned.findIndex(function(l){return l[0] == user.major})
+        if(index == -1){
+            return 0;
+        }
+        return learned[index][1];
+    }
+
     if(students.length > 0){
         return(
             <>
-                <h1>רשימת התלמידים.ות בכיתה </h1>
+                <h1>רשימת התלמידים.ות בכיתה {cls.age_group + class_number}</h1>
 
                 <table>
                     <thead>
@@ -42,7 +63,6 @@ function StudentsInfoStudy(){
                             <th>שם פרטי</th>
                             <th>מספר תעודת זהות</th>
                             <th>נוכחות</th>
-                            <th>היעדרות</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,8 +71,7 @@ function StudentsInfoStudy(){
                                 <td className="index-column">{index + 1}</td>
                                 {findUsers(student.user)}
                                 <td>{student.id}</td>
-                                <td>{student.learned_lessons}</td>
-                                <td>{student.total_lessons - student.learned_lessons}</td>
+                                <td>{lessonsCount(student.learned_lessons)}</td>
                             </tr> 
                         ))}
                     </tbody>

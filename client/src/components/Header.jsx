@@ -13,13 +13,13 @@ function Header(){
     })
     
     function LogOut(){
-        axios.get("http://localhost:3000/logout")
-        .then(result => {
+        //axios.post("http://localhost:3000/logout")
+        //.then(result => {
             window.localStorage.removeItem("id");
             window.localStorage.removeItem("type");
-            window.location.reload()
-        })
-        .catch(err => console.log(err))
+            navigateTo('/login')
+        //})
+        //.catch(err => console.log(err))
     }
 
     if(window.location.pathname == '/login'){

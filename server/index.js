@@ -455,7 +455,7 @@ app.get('/lessonsByTeacher/:id', async (req,res) => {
   }
 })
 
-app.delete("/deleteCoordinator/:id", (req, res) => {
+app.delete("/deleteLesson/:id", (req, res) => {
   const id = req.params.id;
   LessonsModel.findByIdAndDelete({_id: id})
   .then(res => res.json(res))

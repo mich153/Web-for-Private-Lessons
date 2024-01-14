@@ -87,8 +87,8 @@ function LessonsRegistration(){
             const student = user._id;
             axios.post('http://localhost:3000/createLessson', {teacher, student, day, start, end, subject_id, unit})
             .then(res => {
-                console.log(res.data); //navigate to the loeesons list
                 toggleModal();
+                navigateTo('../../lessons-list')
             })
             .catch(err => console.log(err))
         }
@@ -107,7 +107,7 @@ function LessonsRegistration(){
                 let index = teachers[i].possible_times.findIndex(function(a){return a[0] == day})
                 if(index != -1){
                     teachers[i].possible_times[index].slice(1).map((time, ind) => {
-                        let teacherLessons = lessonsInDay.filter(function(a){return a.time_start >= time[0] && a.time_end <= time[1]});
+                        let teacherLessons = lessonsInDay.filter(function(a){return a.teacher == teachers[i]._id && a.time_start >= time[0] && a.time_end <= time[1]});
                         if(teacherLessons.length > 0){
                             teachers[i].possible_times[index].splice(ind + 1, 1);
                         }

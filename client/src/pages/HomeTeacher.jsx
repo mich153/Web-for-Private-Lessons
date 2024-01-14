@@ -11,7 +11,7 @@ function HomeTeacher() {
             <div className='actions'>
                 <button onClick = {() => navigateTo("possible-times")}>קביעת לו"ז לחודש הבא</button>
                 <button onClick = {() => navigateTo("")}>דיווח על ביצוע תגבור</button>
-                <button onClick = {() => navigateTo("")}>צפייה בלוח תגבורים</button>
+                <button onClick = {() => navigateTo("lessons-list")}>צפייה בלוח תגבורים</button>
                 <button onClick = {() => navigateTo("")}>צפייה בחומרי לימוד שהועלו</button>
             </div>
         </>

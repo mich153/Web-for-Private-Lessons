@@ -9,7 +9,7 @@ function HomeStudent() {
             <h1>ברוכים הבאים</h1>
 
             <div className='actions'>
-                <button onClick = {() => navigateTo("")}>צפייה בלוח תגבורים</button>
+                <button onClick = {() => navigateTo("lessons-list")}>צפייה בלוח תגבורים</button>
                 <button onClick = {() => navigateTo("")}>צפייה בחומרי לימוד</button>
                 <button onClick = {() => navigateTo("registration")}>הרשמה לתגבור</button>
                 <button onClick = {() => navigateTo("")}>נוכחות</button>

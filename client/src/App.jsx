@@ -31,6 +31,7 @@ import DefineTimes from './pages/DefineTimes.jsx'
 import PossibleTimes from './pages/PossibleTimes.jsx'
 import SearchTeachers from './pages/SearchTeachers.jsx'
 import LessonsRegistration from './pages/LessonsRegistration.jsx'
+import LessonsList from './pages/LessonsList.jsx'
 
 function App() {
   return(
@@ -151,6 +152,13 @@ function App() {
                 student={<LessonsRegistration />} />
               } />
             </Route>
+
+            <Route path='lessons-list' element={
+                <AuthRequired
+                student={<LessonsList />}
+                coordinator={<LessonsList />}
+                teacher={<LessonsList />} />
+            } />
 
           </Route>
         </Routes>

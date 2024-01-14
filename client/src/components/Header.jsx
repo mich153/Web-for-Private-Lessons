@@ -40,7 +40,7 @@ function Header(){
             <>
                 <Link to="/"><img src="/logo.png" alt='logo' width="380" height="100"/></Link>
                 <button className = "small-button" onClick = {() => LogOut()}>התנתקות</button>
-                <button className = "small-button" onClick = {() => navigateTo("")}>פרופיל</button>
+                <button className = "small-button" onClick = {() => navigateTo("/home/profile")}>פרופיל</button>
                 <button className = "small-button" onClick = {() => navigateTo("/home")}>מסך ראשי</button>
             </>
         )

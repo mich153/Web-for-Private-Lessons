@@ -105,6 +105,15 @@ app.put("/updateUser/:id" , (req, res) => {
   .catch(err => res.json(err))
 })
 
+app.put("/changePassword/:id" , (req, res) => {
+  const id = req.params.id;
+  UserModel.findByIdAndUpdate({_id: id}, {
+    password: req.body.newPassword
+  })
+  .then(user => res.json(user))
+  .catch(err => res.json(err))
+})
+
 app.delete("/deleteUser/:id", (req, res) => {
   const id = req.params.id;
   UserModel.findByIdAndDelete({_id: id})

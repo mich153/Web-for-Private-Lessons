@@ -32,6 +32,8 @@ import PossibleTimes from './pages/PossibleTimes.jsx'
 import SearchTeachers from './pages/SearchTeachers.jsx'
 import LessonsRegistration from './pages/LessonsRegistration.jsx'
 import LessonsList from './pages/LessonsList.jsx'
+import Profile from './pages/Profile.jsx'
+import ChangePassword from './pages/ChangePassword.jsx'
 
 function App() {
   return(
@@ -50,6 +52,20 @@ function App() {
               student={<HomeStudent />} 
               teacher={<HomeTeacher />}
               coordinator={<HomeCoordinator />} />
+            } />
+
+            <Route path='profile' element={ 
+              <AuthRequired 
+              student={<Profile />} 
+              teacher={<Profile />}
+              coordinator={<Profile />} />
+            } />
+
+            <Route path='change-password' element={ 
+              <AuthRequired 
+              student={<ChangePassword />} 
+              teacher={<ChangePassword />}
+              coordinator={<ChangePassword />} />
             } />
 
             <Route path="classes" >

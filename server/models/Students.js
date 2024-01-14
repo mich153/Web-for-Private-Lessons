@@ -16,16 +16,7 @@ const StudentsSchema = new mongoose.Schema(
             type: Number,
             min: 1
         },
-        total_lessons: {
-            type: Number,
-            min: 0,
-            default: 0
-        }, 
-        learned_lessons: {
-            type: Number,
-            min: 0,
-            default: 0
-        },
+        learned_lessons: mongoose.Schema.Types.Mixed,
         id: {
             type: Number,
             min: 200000000,

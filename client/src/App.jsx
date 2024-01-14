@@ -34,6 +34,7 @@ import LessonsRegistration from './pages/LessonsRegistration.jsx'
 import LessonsList from './pages/LessonsList.jsx'
 import Profile from './pages/Profile.jsx'
 import ChangePassword from './pages/ChangePassword.jsx'
+import LessonsReport from './pages/LessonReport.jsx'
 
 function App() {
   return(
@@ -157,6 +158,12 @@ function App() {
                 teacher={<DefineTimes />} />
               } />
             </Route>
+
+            <Route path='report' element={
+              <AuthRequired
+              coordinator={<LessonsReport />}
+              teacher={<LessonsReport />} />
+            } />
 
             <Route path='registration'>
               <Route index element={

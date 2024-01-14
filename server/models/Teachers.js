@@ -8,11 +8,7 @@ const TeachersSchema = new mongoose.Schema(
             require: true
         },
         lessons: mongoose.Schema.Types.Mixed,
-        teaching: {
-            type: Number,
-            min: 0,
-            default: 0
-        },
+        teaching: mongoose.Schema.Types.Mixed,
         possible_times: mongoose.Schema.Types.Mixed
     }
 );

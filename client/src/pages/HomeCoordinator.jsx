@@ -19,9 +19,8 @@ function HomeCoordinator() {
                 <button onClick = {() => navigateTo("teachers-list/" + user.major)}>מתגברים.ות במקצוע</button>
                 <button onClick = {() => navigateTo("students-list")}>נוכחות לפי כיתות</button>
                 <button onClick = {() => navigateTo("possible-times")}>קביעת לו"ז</button>
-                <button onClick = {() => navigateTo("")}>דיווח על ביצוע תגבור</button>
+                <button onClick = {() => navigateTo("report")}>דיווח על ביצוע תגבור</button>
                 <button onClick = {() => navigateTo("lessons-list")}>לוח תגבורים</button>
-                <button onClick = {() => navigateTo("")}>צפייה בחומרי לימוד שהועלו</button>
             </div>
         </>
     );

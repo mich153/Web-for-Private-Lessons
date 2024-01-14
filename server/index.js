@@ -181,6 +181,15 @@ app.put("/updateStudent/:id" , (req, res) => {
   .catch(err => res.json(err))
 })
 
+app.put("/studentLearn/:id" , (req, res) => {
+  const id = req.params.id;
+  StudentsModel.findByIdAndUpdate({_id: id}, {
+    learned_lessons: req.body.learned
+  })
+  .then(student => res.json(student))
+  .catch(err => res.json(err))
+})
+
 app.delete("/deleteStudent/:id", (req, res) => {
   const id = req.params.id;
   StudentsModel.findByIdAndDelete({_id: id})
@@ -353,6 +362,15 @@ app.put("/updateTeacher/:id", (req, res) => {
   const id = req.params.id;
   TeachersModel.findByIdAndUpdate({_id: id}, {
     lessons: req.body.teachingLessons
+  })
+  .then(user => res.json(user))
+  .catch(err => res.json(err))
+})
+
+app.put("/teacherTeached/:id", (req, res) => {
+  const id = req.params.id;
+  TeachersModel.findByIdAndUpdate({_id: id}, {
+    teaching: req.body.teachingLessons
   })
   .then(user => res.json(user))
   .catch(err => res.json(err))

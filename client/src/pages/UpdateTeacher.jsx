@@ -116,7 +116,7 @@ function UpdateTeacher(){
                         ))}
                     </div>
                     <p className="error">{error}</p>
-                    <button className="submit-button">עידון</button>
+                    <button className="submit-button">עידכון</button>
                 </form>
             </>
         )

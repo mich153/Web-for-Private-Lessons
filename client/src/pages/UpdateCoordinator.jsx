@@ -15,7 +15,7 @@ function UpdateCoordinator(){
     const [major, setMajor] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:3000/coordinator/" + coordinatorID.coordinator_id)
+        axios.get("http://localhost:3000/coordinatorByID/" + coordinatorID.coordinator_id)
         .then(result => {
             setCoordinator(result.data);
             const l = result.data.lessons.reduce(function(obj, v) {

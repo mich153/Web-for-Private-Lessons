@@ -405,6 +405,15 @@ app.post("/createCoordinators", async (req, res) => {
   .catch(err => res.json(err))
 })
 
+app.get('/coordinatorByID/:id', async (req,res) => {
+  try {
+    const data = await CoordinatorsModel.findOne({_id: req.params.id});
+    res.send(data);
+  } catch (err) {
+    throw err;
+  }
+})
+
 app.get('/coordinators', async (req,res) => {
   try {
     const data = await CoordinatorsModel.find({});

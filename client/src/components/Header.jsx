@@ -12,14 +12,13 @@ function Header(){
         setUserType(window.localStorage.getItem("type"));
     })
     
-    function LogOut(){
-        //axios.post("http://localhost:3000/logout")
-        //.then(result => {
+    function LogOut(e){
+        e.preventDefault();
+        if(window.localStorage.getItem("id") && window.localStorage.removeItem("type")){
             window.localStorage.removeItem("id");
             window.localStorage.removeItem("type");
-            navigateTo('/login')
-        //})
-        //.catch(err => console.log(err))
+        }
+        navigateTo('/login');
     }
 
     if(window.location.pathname == '/login'){
@@ -31,7 +30,7 @@ function Header(){
             return(
                 <>
                     <Link to="/"><img src="/logo.png" alt='logo' width="380" height="100"/></Link>
-                    <button className = "small-button" onClick = {() => LogOut()}>התנתקות</button>
+                    <button className = "small-button" onClick = {(e) => LogOut(e)}>התנתקות</button>
                     <button className = "small-button" onClick = {() => navigateTo("/home")}>מסך ראשי</button>
                 </>
             )
@@ -39,7 +38,7 @@ function Header(){
         return(
             <>
                 <Link to="/"><img src="/logo.png" alt='logo' width="380" height="100"/></Link>
-                <button className = "small-button" onClick = {() => LogOut()}>התנתקות</button>
+                <button className = "small-button" onClick = {(e) => LogOut(e)}>התנתקות</button>
                 <button className = "small-button" onClick = {() => navigateTo("/home/profile")}>פרופיל</button>
                 <button className = "small-button" onClick = {() => navigateTo("/home")}>מסך ראשי</button>
             </>

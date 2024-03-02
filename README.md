@@ -15,7 +15,7 @@ The following technologies are used:
 * Admin: can edit the information about the educational institution (e.g. the fields of study that can learn in this educational institution), and add/edit/remove users.
 
 ## Attached files
-Inside the folder Attached Files, there are the following files (in Hebrew):
+Inside the folder Attached Files, there are the following documents (in Hebrew):
 * User guide
 * System analysis
 * System design
